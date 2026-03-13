@@ -450,7 +450,7 @@
         font-weight: 600;
       }
 
-      /* recipient card */
+      /* RECIPIENT CARD — FULLY MOBILE RESPONSIVE (modified only) */
       .recipient-card {
         background: #f0f5fe;
         border-radius: 1.5rem;
@@ -461,6 +461,11 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
+        gap: 1rem; /* added for consistent spacing */
+      }
+      .recipient-details {
+        flex: 2 1 260px; /* allow shrink + grow */
+        min-width: 200px;
       }
       .recipient-details h4 {
         font-size: 1.3rem;
@@ -469,6 +474,7 @@
         align-items: center;
         gap: 0.5rem;
         margin-bottom: 0.8rem;
+        flex-wrap: wrap; /* allow icon/text to stack on tiny */
       }
       .recipient-details p {
         display: flex;
@@ -476,20 +482,52 @@
         gap: 0.6rem;
         color: #2c3e5c;
         margin: 0.4rem 0;
+        word-break: break-word; /* break long email/address */
+        flex-wrap: wrap; /* safe for mobile */
       }
       .recipient-details i {
         color: #f05b2c;
         width: 1.5rem;
+        flex-shrink: 0; /* keep icon fixed */
       }
       .recipient-map {
         background: white;
         padding: 0.8rem 1.8rem;
         border-radius: 40px;
         font-weight: 600;
-        display: flex;
+        display: inline-flex; /* changed to inline-flex to better fit */
         align-items: center;
         gap: 0.5rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        white-space: nowrap; /* keep "Bound for Spain" on one line */
+        flex-shrink: 0; /* prevent squish */
+      }
+      /* specific mobile polish */
+      @media screen and (max-width: 550px) {
+        .recipient-card {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1.2rem 1.2rem; /* slightly reduce padding */
+        }
+        .recipient-details p {
+          gap: 0.5rem;
+          font-size: 0.95rem; /* fine adjust */
+        }
+        .recipient-map {
+          align-self: flex-start; /* left align on mobile */
+          margin-top: 0.25rem;
+          white-space: nowrap; /* still single line */
+        }
+      }
+      /* extra tiny: ensure no overflow */
+      @media screen and (max-width: 380px) {
+        .recipient-details p {
+          font-size: 0.9rem;
+        }
+        .recipient-map {
+          padding: 0.6rem 1.2rem;
+          font-size: 0.9rem;
+        }
       }
 
       /* step tracker */
@@ -839,11 +877,6 @@
         .overlay .quote {
           font-size: 1.2rem;
         }
-        .recipient-card {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
-        }
       }
       @media (max-width: 550px) {
         .footer-grid {
@@ -982,7 +1015,7 @@
           >
         </div>
 
-        <!-- RECIPIENT ADDRESS -->
+        <!-- RECIPIENT ADDRESS - FULLY RESPONSIVE NOW -->
         <div class="recipient-card">
           <div class="recipient-details">
             <h4><i class="fa-solid fa-cube"></i> Recipient · Valencia, Spain</h4>
